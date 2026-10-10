@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adrianezd.github.io/el-pueblo-duerme/sitemap.xml

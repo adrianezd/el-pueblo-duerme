@@ -1,0 +1,17 @@
+{
+  "name": "El pueblo duerme - Juego de fiesta",
+  "short_name": "Pueblo duerme",
+  "description": "Juego de fiesta de lobos y aldeanos: de noche atacan, de día se vota. En un móvil o cada uno con el suyo.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a14",
+  "theme_color": "#070a14",
+  "lang": "es",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

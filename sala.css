@@ -1,0 +1,77 @@
+/* =========================================================================
+   Sala — modo con código de sala (mismo archivo en los tres juegos de fiesta).
+   Usa las variables y piezas del style.css de cada juego (--accent, .card…).
+   ========================================================================= */
+
+/* pestañas «Mismo móvil» / «Con código de sala» */
+.sala-tabs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; padding: 0.3rem; margin-bottom: 1rem;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+}
+.sala-tabs button {
+  padding: 0.75rem 0.5rem; border: 0; border-radius: var(--radius-md); background: transparent;
+  color: var(--muted); font: inherit; font-weight: 700; cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.sala-tabs button.is-on {
+  color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--glow);
+}
+
+/* qué se ve en los ajustes según la pestaña:
+   - «Mismo móvil»: lo de siempre
+   - «Con código de sala» sin sala: solo el panel para crear o unirse
+   - anfitrión configurando: la sala arriba y los ajustes del juego sin los de «mismo móvil» */
+.sala-join-panel, .sala-room-panel, .sala-start { display: none; }
+body.sala-join [data-screen="setup"] > :not(.sala-tabs):not(.sala-join-panel):not(.visually-hidden) { display: none !important; }
+body.sala-join .sala-join-panel { display: block; }
+body.sala-hosting .sala-tabs, body.sala-hosting .sala-join-panel { display: none !important; }
+body.sala-hosting .sala-room-panel, body.sala-hosting .sala-start { display: block; }
+body.sala-hosting .no-sala { display: none !important; }
+
+.sala-join-panel .card { display: flex; flex-direction: column; gap: 0.6rem; }
+.sala-label { font-weight: 700; font-size: 0.9rem; margin-top: 0.4rem; }
+.sala-input {
+  width: 100%; padding: 0.85rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-strong);
+  background: var(--surface); color: var(--text); font: inherit; font-size: 1.05rem;
+}
+.sala-input:focus { outline: none; border-color: rgba(var(--accent-rgb), 0.8); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.2); }
+.sala-code-input { font-family: var(--font-mono); letter-spacing: 0.4em; text-transform: uppercase; text-align: center; font-size: 1.5rem; }
+.sala-or { display: flex; align-items: center; gap: 0.6rem; color: var(--faint); font-size: 0.8rem; margin: 0.4rem 0; }
+.sala-or::before, .sala-or::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.sala-msg { min-height: 1.3em; margin: 0; text-align: center; color: var(--accent-2); font-weight: 700; }
+.sala-center { text-align: center; }
+
+/* la sala (código y jugadores) */
+.sala-room-card { text-align: center; }
+.sala-room-card .card-title { justify-content: space-between; text-align: left; margin-top: 0.8rem; }
+.sala-code {
+  margin: 0.1rem 0 0.4rem; font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.22em;
+  font-size: clamp(2.6rem, 14vw, 3.6rem); line-height: 1.1;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sala-players { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+.sala-players li {
+  display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.8rem; border-radius: var(--radius-md);
+  background: var(--surface); border: 1px solid var(--border); animation: sala-pop 0.25s ease-out;
+}
+.sala-pname { flex: 1; min-width: 0; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sala-tag { font-size: 0.72rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: rgba(var(--accent-rgb), 0.18); color: var(--text); font-weight: 700; white-space: nowrap; }
+.sala-start { margin-top: 0.5rem; }
+.sala-start .btn-text { display: block; margin: 0.5rem auto 0; }
+@keyframes sala-pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* pantalla de la ronda */
+.sala-wrap { gap: 1rem; }
+.sala-wrap > .btn-text { align-self: center; }
+.sala-round { margin: 0; text-align: center; color: var(--faint); font-size: 0.8rem; font-family: var(--font-mono); }
+.sala-count { margin: 0; text-align: center; color: var(--muted); }
+
+/* votar desde el móvil */
+.sala-votes { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.5rem; width: 100%; align-self: stretch; }
+.sala-vote {
+  padding: 0.9rem 0.6rem; border-radius: var(--radius-md); border: 2px solid var(--border-strong); background: var(--surface);
+  color: var(--text); font: inherit; font-weight: 700; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  transition: transform 0.12s, border-color 0.2s, background 0.2s;
+}
+.sala-vote.is-selected { border-color: rgba(var(--accent-rgb), 0.95); background: rgba(var(--accent-rgb), 0.25); box-shadow: var(--glow); }
+.sala-vote.is-none { grid-column: 1 / -1; }
+.sala-vote:active { transform: scale(0.96); }

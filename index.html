@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El pueblo duerme — juego de fiesta de lobos y aldeanos, gratis</title>
+<meta name="description" content="Juego de fiesta gratis de lobos y aldeanos, sin descargas. De noche los lobos eligen víctima, la vidente investiga y la curandera protege; de día el pueblo debate y vota. En un solo móvil o cada uno con el suyo con un código de sala.">
+<meta name="keywords" content="el pueblo duerme, juego de lobos, hombres lobo, juego de fiesta, juego para grupos, juego de deducción social, mafia, juego de móvil para fiestas, juego sin descargar app">
+<link rel="canonical" href="https://adrianezd.github.io/el-pueblo-duerme/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#070a14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta property="og:title" content="El pueblo duerme — juego de fiesta de lobos y aldeanos">
+<meta property="og:description" content="De noche los lobos atacan; de día el pueblo vota. Lobos, vidente, curandera y aldeanos. Gratis, en un móvil o cada uno con el suyo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adrianezd.github.io/el-pueblo-duerme/">
+<meta property="og:image" content="https://adrianezd.github.io/el-pueblo-duerme/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="El pueblo duerme">
+<meta name="twitter:description" content="Lobos contra aldeanos. Juego de fiesta gratis, en un móvil o cada uno con el suyo.">
+<meta name="twitter:image" content="https://adrianezd.github.io/el-pueblo-duerme/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="sala.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Game",
+      "name": "El pueblo duerme",
+      "description": "Juego de fiesta de deducción social: lobos contra aldeanos. De noche los lobos eligen a quién devorar; de día el pueblo debate y vota a quién echar. Se juega en un solo móvil o cada uno con el suyo con un código de sala.",
+      "genre": ["Juego de fiesta", "Deducción social", "Juego social"],
+      "applicationCategory": "Game",
+      "gamePlatform": "Web Browser",
+      "url": "https://adrianezd.github.io/el-pueblo-duerme/",
+      "image": "https://adrianezd.github.io/el-pueblo-duerme/og-image.png",
+      "inLanguage": "es",
+      "isAccessibleForFree": true,
+      "numberOfPlayers": { "@type": "QuantitativeValue", "minValue": 4, "maxValue": 16 },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Cómo se juega a El pueblo duerme?", "acceptedAnswer": { "@type": "Answer", "text": "Cada jugador recibe en secreto un papel: lobo, vidente, curandera o aldeano. De noche los lobos eligen a quién devorar, la vidente descubre si alguien es lobo y la curandera protege a alguien. De día todos debaten y votan a quién echar del pueblo." } },
+        { "@type": "Question", "name": "¿Hace falta un narrador?", "acceptedAnswer": { "@type": "Answer", "text": "No. El móvil hace de narrador: de noche se pasa por orden y cada uno hace su acción en secreto, o cada uno la hace en su propio móvil si jugáis con código de sala." } },
+        { "@type": "Question", "name": "¿Cuántos jugadores hacen falta?", "acceptedAnswer": { "@type": "Answer", "text": "De 4 a 16 jugadores. Con más de 6 es más divertido y con más de 10 se recomiendan 3 lobos." } },
+        { "@type": "Question", "name": "¿Es gratis?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, completamente gratis, sin anuncios ni descargas." } }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header hide-in-game">
+  <div class="hero-badge" aria-hidden="true">🐺</div>
+  <p class="site-kicker">Juego de fiesta · un móvil o cada uno el suyo</p>
+  <h1>El pueblo duerme</h1>
+  <p class="tagline">Cae la noche y los lobos salen de caza. Al amanecer, el pueblo tendrá que descubrir quién se esconde entre los vecinos.</p>
+  <ul class="hero-chips">
+    <li>👥 4–16 jugadores</li>
+    <li>🐺 Lobos</li>
+    <li>🔮 Vidente</li>
+    <li>🌿 Curandera</li>
+  </ul>
+</header>
+
+<div class="game-bar" id="game-bar" hidden>
+  <span class="game-bar-title" id="game-bar-title">Día 1</span>
+  <button type="button" class="btn-icon" id="btn-exit">✕ Salir</button>
+</div>
+
+<main>
+
+  <div id="game-app">
+
+    <!-- ============================= SETUP ============================= -->
+    <section class="screen" data-screen="setup">
+      <h2 class="visually-hidden">Preparar partida</h2>
+
+      <div class="card">
+        <h3 class="card-title">👥 Jugadores</h3>
+        <div class="stepper-row">
+          <span class="stepper-label" id="player-count-label">Jugadores</span>
+          <div class="stepper" role="group" aria-labelledby="player-count-label">
+            <button type="button" id="btn-player-minus" class="stepper-btn" aria-label="Restar jugador">−</button>
+            <span class="stepper-value" id="player-count-value" aria-live="polite">6</span>
+            <button type="button" id="btn-player-plus" class="stepper-btn" aria-label="Sumar jugador">+</button>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>✏️ Nombres de los jugadores <small>(opcional)</small></summary>
+          <div class="names-grid" id="names-grid"></div>
+          <button type="button" class="mini-btn" id="btn-shuffle-names">🔀 Mezclar el orden</button>
+        </details>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">🎭 Papeles <span class="card-aside" id="role-summary"></span></h3>
+        <div class="stepper-row">
+          <span class="stepper-label" id="wolf-count-label">🐺 Lobos <small id="wolf-hint">Máximo 1 para 6 jugadores</small></span>
+          <div class="stepper" role="group" aria-labelledby="wolf-count-label">
+            <button type="button" id="btn-wolf-minus" class="stepper-btn" aria-label="Restar lobo">−</button>
+            <span class="stepper-value" id="wolf-count-value" aria-live="polite">1</span>
+            <button type="button" id="btn-wolf-plus" class="stepper-btn" aria-label="Sumar lobo">+</button>
+          </div>
+        </div>
+        <label class="switch-row">
+          <span>🔮 Vidente <small>Cada noche descubre si alguien es lobo</small></span>
+          <input type="checkbox" class="switch" id="opt-seer">
+        </label>
+        <label class="switch-row">
+          <span>🌿 Curandera <small>Cada noche protege a alguien de los lobos</small></span>
+          <input type="checkbox" class="switch" id="opt-healer">
+        </label>
+        <p class="setup-hint">El resto son 🧑‍🌾 aldeanos.</p>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">⚙️ Opciones</h3>
+        <div class="stepper-row">
+          <span class="stepper-label" id="timer-label">Tiempo de debate <small id="timer-hint">Con cronómetro</small></span>
+          <div class="stepper" role="group" aria-labelledby="timer-label">
+            <button type="button" id="btn-time-minus" class="stepper-btn" aria-label="Menos tiempo">−</button>
+            <span class="stepper-value" id="time-value" aria-live="polite">3′</span>
+            <button type="button" id="btn-time-plus" class="stepper-btn" aria-label="Más tiempo">+</button>
+          </div>
+        </div>
+        <label class="switch-row">
+          <span>Revelar el papel al caer <small>Se dice qué era quien muere o es echado</small></span>
+          <input type="checkbox" class="switch" id="opt-reveal">
+        </label>
+        <label class="switch-row">
+          <span>Votación secreta <small>Cada uno vota en privado en el móvil</small></span>
+          <input type="checkbox" class="switch" id="opt-secret-vote">
+        </label>
+        <label class="switch-row">
+          <span>Sonido</span>
+          <input type="checkbox" class="switch" id="opt-sound">
+        </label>
+        <label class="switch-row">
+          <span>Vibración</span>
+          <input type="checkbox" class="switch" id="opt-vibrate">
+        </label>
+      </div>
+
+      <button type="button" id="btn-start-game" class="btn btn-primary btn-large btn-start">¡Repartir papeles! 🎲</button>
+    </section>
+
+    <!-- ============================== PARTIDA ============================== -->
+    <section class="screen" data-screen="play" hidden>
+      <div id="play-root"></div>
+    </section>
+
+  </div>
+
+  <section class="info-section hide-in-game" id="como-jugar">
+    <h2>Cómo jugar</h2>
+    <ol class="how-to-list">
+      <li><strong>Reparto.</strong> Cada uno ve en secreto su papel manteniendo pulsada la carta. Los lobos saben quiénes son sus compañeros.</li>
+      <li><strong>Cae la noche.</strong> El pueblo duerme. Los lobos eligen a quién devorar, la vidente descubre si alguien es lobo y la curandera protege a alguien. Los aldeanos también tocan algo, para que nadie se delate por el tiempo que tarda.</li>
+      <li><strong>Amanece.</strong> Se anuncia quién no ha despertado… o si la curandera lo salvó.</li>
+      <li><strong>Debate y votación.</strong> Todos discuten con el cronómetro en marcha y votan a quién echar del pueblo. En caso de empate, nadie se va.</li>
+      <li><strong>Final.</strong> Gana el pueblo si echa a todos los lobos. Ganan los lobos si llegan a ser tantos como el resto.</li>
+      <li><strong>Un móvil o cada uno el suyo.</strong> Con «Mismo móvil» el móvil se va pasando y hace de narrador. Con «Con código de sala» uno crea la sala, elige los ajustes y también juega; el resto entra con el código y cada uno hace todo en su móvil (hace falta internet).</li>
+    </ol>
+  </section>
+
+  <section class="info-section hide-in-game" id="papeles">
+    <h2>Papeles</h2>
+    <ul class="feature-grid">
+      <li><strong>🐺 Lobo</strong>Cada noche, con su manada, elige a quién devorar. De día tiene que disimular y desviar las sospechas.</li>
+      <li><strong>🔮 Vidente</strong>Cada noche descubre si un jugador es lobo. Tiene que guiar al pueblo sin que los lobos la descubran.</li>
+      <li><strong>🌿 Curandera</strong>Cada noche protege a alguien (también a sí misma), pero no a la misma persona dos noches seguidas.</li>
+      <li><strong>🧑‍🌾 Aldeano</strong>Sin poderes, pero con voto. Su arma es escuchar, sospechar y convencer.</li>
+    </ul>
+  </section>
+
+  <section class="info-section hide-in-game" id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details class="faq-item"><summary>¿Hace falta un narrador?</summary><p>No. El móvil hace de narrador: de noche se pasa por orden y cada uno hace su acción en secreto, o cada uno la hace en su propio móvil si jugáis con código de sala.</p></details>
+    <details class="faq-item"><summary>¿Cuántos lobos pongo?</summary><p>Uno hasta 6 jugadores, dos de 7 a 10 y tres a partir de 11. El juego lo sugiere solo, pero puedes cambiarlo.</p></details>
+    <details class="faq-item"><summary>¿Qué pasa si hay empate en la votación?</summary><p>Nadie se va del pueblo ese día. También se puede votar «Nadie» si el pueblo no lo tiene claro.</p></details>
+    <details class="faq-item"><summary>¿Se puede jugar cada uno con su móvil?</summary><p>Sí: en los ajustes elige «Con código de sala». Uno crea la sala y el resto entra con el código. Cada uno ve su papel, hace su acción de noche y vota en su propio móvil.</p></details>
+    <details class="faq-item"><summary>¿Es gratis?</summary><p>Sí, completamente gratis, sin anuncios ni descargas.</p></details>
+  </section>
+
+</main>
+
+<footer class="site-footer hide-in-game">
+  <nav class="more-games" aria-label="Más juegos de fiesta">
+    <h2>Más juegos de fiesta</h2>
+    <a class="game-link" href="https://adrianezd.github.io/quien-es-el-impostor/"><span class="game-link-emoji" aria-hidden="true">🕵️</span><span><strong>¿Quién es el Impostor?</strong><span>Todos saben la palabra secreta menos uno.</span></span></a>
+    <a class="game-link" href="https://adrianezd.github.io/dibujo-impostor/"><span class="game-link-emoji" aria-hidden="true">✏️</span><span><strong>Dibujo Impostor</strong><span>Todos dibujan lo mismo salvo el impostor, que no sabe que lo es.</span></span></a>
+    <a class="game-link" href="https://adrianezd.github.io/el-dato-falso/"><span class="game-link-emoji" aria-hidden="true">🤥</span><span><strong>El Dato Falso</strong><span>Trivia en la que a los mentirosos se les cuela un dato falso.</span></span></a>
+    <a class="game-link is-current" href="https://adrianezd.github.io/el-pueblo-duerme/" aria-current="page"><span class="game-link-emoji" aria-hidden="true">🐺</span><span><strong>El pueblo duerme</strong><span>Lobos contra aldeanos: de noche atacan, de día se vota.</span></span></a>
+  </nav>
+  <p>El pueblo duerme es un juego de fiesta original de deducción social, no afiliado a ninguna marca comercial.</p>
+  <p>Hecho para jugar en cualquier móvil, sin cuentas ni descargas.</p>
+</footer>
+
+<script src="kit.js"></script>
+<script src="sala.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
